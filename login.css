@@ -1,0 +1,34 @@
+
+ 
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100vw;
+    height: 100vh;  
+}
+.container{
+    width: 100%;
+    height: 100%;
+}
+.sec{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.login .header{
+    width: 100%;
+}
+h2{
+    text-align: center;
+}
+.login form  input,.login .header {
+    width: 400px;
+    height: 40px;
+    margin:0.3em;
+}
+
