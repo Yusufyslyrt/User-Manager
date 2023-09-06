@@ -9,44 +9,64 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <button class="btn" id="open-modal">Yeni Kullanici</button>
-            <div id="add-modal" class="modal">
-                <div class="modal-content">
-                    <h2>Kullanıcı Ekle</h2>
-                    <form>
-                        <label for="user-id">ID:</label>
-                        <input type="text" id="user-id" value="1" required> <br>
-                        <label for="user-email">Email:</label>
-                        <input type="email" id="user-email" value="adminysf@gmail" required><br>
-                        <label for="user-first-name">First Name:</label>
-                        <input type="text" id="user-first-name" value="ysf" required><br>
-                        <label for="user-last-name">Last Name:</label>
-                        <input type="text" id="user-last-name" value="yy" required><br>
-                        <label for="user-avatar">Avatar:</label>
-                        <input type="text" id="user-avatar" value="y.png" required><br>
-                        <button type="button" id="add-button">Ekle</button>
-                        <span id="close-modal" class="close">&times;</span>
-                    </form>
-                </div>
-            </div> 
+        <div class="box">
+            <div class="header">
+                <button class="btn btn1" id="open-modal">Yeni Kullanıcı</button>
+                <div id="add-modal" class="modal">
+                    <div class="modal-content">
+                        <h2>Kullanıcı Ekle</h2>
+                        <form>
+                            <div class="inputText">
+                                <label for="user-id">ID:</label>
+                            <input type="text" id="user-id" value="1" required>
+                            </div>
+                            <div class="inputText">
+                                <label for="user-email">Email:</label>
+                            <input type="email" id="user-email" value="adminysf@gmail" required>
+                            </div>
+                            <div class="inputText">
+                                <label for="user-first-name">First Name:</label>
+                            <input type="text" id="user-first-name" value="ysf" required>
+                            </div>
+                            <div class="inputText">
+                                <label for="user-last-name">Last Name:</label>
+                            <input type="text" id="user-last-name" value="yy" required>
+                            </div>
+                            <div class="inputText">
+                                <label for="user-avatar">Avatar:</label>
+                            <input type="text" id="user-avatar" value="y.png" required>
+                            </div> 
+                            <div class="inputText">
+                                <div class="miniBox">
+                                    <div>
+                                        <button type="button" class="btn" id="add-button">Ekle</button>
+                                    </div>
+                                    <div>
+                                        <span id="close-modal" class="close">&times;</span>
+                                    </div>
+                                </div>                                   
+                            </div>                           
+                            
+                            
+                        </form>
+                    </div>
+                </div> 
+            </div>
+            <div class="section">
+                <h1>Kullanıcı Verileri</h1>
+                <table id="user-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Avatar</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
-        
-        <div class="section">
-            <h1>Kullanıcı Verileri</h1>
-            <table id="user-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Name</th>
-                        <th>Avatar</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-
     </div>
     
         
