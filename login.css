@@ -20,13 +20,13 @@ body{
     justify-content: center;
     align-items: center;
 }
-.login .header{
+.login .head{
     width: 100%;
 }
 h2{
     text-align: center;
 }
-.login form  input,.login .header {
+.login form  input,.login .head {
     width: 400px;
     height: 40px;
     margin:0.3em;
