@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    
     const logIn = localStorage.getItem("loginkey");
 
     if (!logIn || logIn !== "true") {
@@ -9,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         openModalButton.addEventListener("click", function () {
         
         const form = modal.querySelector("form");
-        form.style.display = "block";
+        form.style.display = "flex";
         modal.style.display = "block";
     });
         const closeModalButton = document.getElementById("close-modal");
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             last_name: lastName,
             Avatar: avatar
         };
-
+        
         const userTableBody = document.querySelector("tbody");
         const row = createRow(user);
         userTableBody.appendChild(row);
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${kullanici.email}</td>
                 <td>${kullanici.first_name} ${kullanici.last_name}</td>
                 <td><img src="${kullanici.avatar}" alt="Avatar"></td>
-                <td><i style="font-size:25px; color:#ffa700; margin-left:1em; cursor:pointer" class="fa">&#xf014;</i></td>
+                <td><button style="width:100%; height:10vh; background:none; border:none; cursor:pointer;"><i style="font-size:25px; color:#ffa700; cursor:pointer" class="fa">&#xf014;</i></button></td>
             `;
             const deleteButton = row.querySelector(".fa");
             deleteButton.addEventListener("click", () => {
