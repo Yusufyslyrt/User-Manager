@@ -1,4 +1,68 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-align: center;
+}
+body{
+    width: 100vw;
+    max-height: 100vh;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/005/763/896/original/abstract-watercolor-soft-dark-blue-smoke-layer-gradient-background-free-vector.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    width: 70%;
+}
 
+.header{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.btn{
+    margin: 0.9em;
+    padding: 0.7em;
+    background-color:  #ffa700;
+    color:white;
+    font-weight: bold;
+    cursor: pointer;   
+    border: none;
+    border-radius: 0.5em; 
+}
+.btn:hover{
+    background-color: #ffa700d4;
+}
+.btn1{
+    position: fixed;
+    top: 4em;
+    right: 2em;
+    margin: 0.1em;
+    padding: 0.7em;
+}
+.section{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+table,th,td{
+    border: 1px solid #fff;
+}
+#user-table{
+    border-collapse: collapse;
+}
 .modal {
     display: none;
     position: fixed;
@@ -11,16 +75,24 @@
 }
 
 .modal-content {
-    background-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/005/763/896/original/abstract-watercolor-soft-dark-blue-smoke-layer-gradient-background-free-vector.jpg");
+    background-repeat: no-repeat;
+    /* background-size: 1000px 350px; */background-size: cover;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-
+input{
+    color:black;
+    font-weight:500;
+    outline: none;
+}
 .close {
-    float: right;
     font-size: 40px;
     font-weight: bold;
 }
@@ -28,4 +100,30 @@
 .close:hover {
     color: orange;
     cursor: pointer;
+}
+form{
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap:1em;
+}
+
+.inputText, .inputText> .miniBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 31%;
+}
+@media screen and (max-width: 1380px){
+    .inputText{
+        display:flex;
+        width:50%;
+        justify-content: space-between;
+    }
+}
+@media screen and (max-width: 1090px){
+    .inputText{
+        display:flex;
+        flex-direction: column;
+    }
 }
