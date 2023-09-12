@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-
     const logIn = localStorage.getItem("loginkey");
 
     if (!logIn || logIn !== "true") {
@@ -77,6 +76,92 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="edit-button"; style="width:100%; height:100%; background:none; border:1px solid white; cursor:pointer;"><i style="font-size:25px; color:#ffa700; cursor:pointer"  class="fa edit-button">&#xf040;</i></button>
                 </td>
             `;
+            //------------------
+        userTableBody.addEventListener('click', function (event) {
+            const hedef = event.target;
+            if (hedef.classList.contains("edit-button")) {
+
+                const editModal = document.getElementById("edit-modal");
+                const editForm = editModal.querySelector("form");
+
+                editModal.style.display = "block";
+                editForm.style.display = "flex";
+                const closeEditModalButton = document.getElementById("close-edit-modal");
+                closeEditModalButton.addEventListener("click", function () {
+                    editModal.style.display = "none";
+                });
+                window.addEventListener("click", function (event) {
+                    if (event.target === editModal) {
+                        editModal.style.display = "none";
+                    }
+                });
+
+                const row = hedef.closest("tr");
+                const id = row.querySelector("td:nth-child(1)").textContent;
+                const email = row.querySelector("td:nth-child(2)").textContent;
+                const fullName = row.querySelector("td:nth-child(3)").textContent.split(" ");
+                const firstName = fullName[0];
+                const lastName = fullName[1];
+                const avatar = row.querySelector("td:nth-child(4) img").src;
+
+                editForm.querySelector("#edit-user-id").value = id;
+                editForm.querySelector("#edit-user-email").value = email;
+                editForm.querySelector("#edit-user-first-name").value = firstName;
+                editForm.querySelector("#edit-user-last-name").value = lastName;
+                editForm.querySelector("#edit-user-avatar").value = avatar;
+
+                const updateButton = editModal.querySelector("#update-button");
+                updateButton.addEventListener("click", () => {
+
+                    const newId = editForm.querySelector("#edit-user-id").value;
+                    const newEmail = editForm.querySelector("#edit-user-email").value;
+                    const newFirstName = editForm.querySelector("#edit-user-first-name").value;
+                    const newLastName = editForm.querySelector("#edit-user-last-name").value;
+                    const newAvatar = editForm.querySelector("#edit-user-avatar").value;
+
+                    updateUser(newId, newEmail, newFirstName, newLastName, newAvatar); 
+
+                    row.querySelector("td:nth-child(1").textContent = newId;
+                    row.querySelector("td:nth-child(2)").textContent = newEmail;
+                    row.querySelector("td:nth-child(3)").textContent = newFirstName + " " + newLastName;
+                    row.querySelector("td:nth-child(4) img").src = newAvatar;
+
+                    editModal.style.display = "none";
+                    
+                });
+            }
+        })
+        
+        function updateUser(newId, newEmail, newFirstName, newLastName, newAvatar) {
+
+            const user = {
+                id: newId,
+                e_mail: newEmail,
+                first_name: newFirstName,
+                last_name: newLastName,
+                avatar: newAvatar
+            };
+
+            fetch(`https://reqres.in/api/users/${newId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
+            })
+                .then(response => {return response.json() })
+                .then(data => {
+                    console.log("Kullanıcı güncellendi:", data);
+                    deleteUser(user.id);
+                    console.log(user.id)
+                })
+                .catch(error => {
+                    console.error("Hata:", error);
+                });
+
+        }
+
+        //----------------------
 
         const deleteButton = row.querySelector(".delete-button");
         deleteButton.addEventListener("click", () => {
