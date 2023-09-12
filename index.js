@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="edit-button"; style="width:100%; height:100%; background:none; border:1px solid white; cursor:pointer;"><i style="font-size:25px; color:#ffa700; cursor:pointer"  class="fa edit-button">&#xf040;</i></button>
                 </td>
             `;
-            //------------------
+           
         userTableBody.addEventListener('click', function (event) {
             const hedef = event.target;
             if (hedef.classList.contains("edit-button")) {
@@ -160,8 +160,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
         }
-
-        //----------------------
 
         const deleteButton = row.querySelector(".delete-button");
         deleteButton.addEventListener("click", () => {
