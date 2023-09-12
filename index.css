@@ -56,6 +56,44 @@ body{
     flex-direction: column;
     gap: 1.5em;
 }
+table{
+    display:flex;
+    flex-direction: column;
+}
+#user-table thead > tr{
+    display: flex;
+    justify-content:flex-start;
+}
+thead > tr > th{
+    width: 30%;
+}
+thead tr > th:first-child{
+    width: 5%;
+}
+#user-table tbody > tr{
+    display: flex;
+}
+tbody tr > td{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width:30%;
+}
+tbody tr > td:last-child{
+    flex-direction: column;
+}
+tbody tr > td:last-child , tbody tr > td:first-child {
+    width:5%;
+}
+tbody tr > td > button:last-child{
+    border-bottom:none !important;
+}
+tbody tr > td > button:first-child{
+    border-top:none !important;
+}
+tbody tr:first-child > td:last-child > button:first-child{
+    border-top:1px solid white !important;
+}
 
 table,th,td{
     border: 1px solid #fff;
