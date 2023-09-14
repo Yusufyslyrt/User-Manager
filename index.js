@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "block";
     });
 
-
     const closeModalButton = document.getElementById("close-modal");
     closeModalButton.addEventListener("click", function () {
         modal.style.display = "none";
@@ -64,13 +63,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const userTableBody = document.querySelector("tbody");
 
+    let selectedId = null;
     userTableBody.addEventListener('click', function (event) {
         const hedef = event.target;
         if (hedef.classList.contains("edit-button")) {
 
             const editModal = document.getElementById("edit-modal");
             const editForm = editModal.querySelector("form");
-
 
             editModal.style.display = "block";
             editForm.style.display = "flex";
@@ -107,20 +106,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 const newLastName = editForm.querySelector("#edit-user-last-name").value;
                 const newAvatar = editForm.querySelector("#edit-user-avatar").value;
 
-                updateUser(newId, newEmail, newFirstName, newLastName, newAvatar);
-
-                row.querySelector("td:nth-child(1").textContent = newId;
-                row.querySelector("td:nth-child(2)").textContent = newEmail;
-                row.querySelector("td:nth-child(3)").textContent = newFirstName + " " + newLastName;
-                row.querySelector("td:nth-child(4) img").src = newAvatar;
-
+                selectedId = id;
+                updateUser(row, newId, newEmail, newFirstName, newLastName, newAvatar);
                 editModal.style.display = "none";
 
             });
         }
     })
 
-    function updateUser(newId, newEmail, newFirstName, newLastName, newAvatar) {
+    function updateUser(row, newId, newEmail, newFirstName, newLastName, newAvatar) {
 
         const user = {
             id: newId,
@@ -130,22 +124,29 @@ document.addEventListener("DOMContentLoaded", function () {
             avatar: newAvatar
         };
 
-        fetch(`https://reqres.in/api/users/${newId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(user),
-        })
-            .then(response => { return response.json() })
-            .then(data => {
-                console.log("Kullanıcı güncellendi:", data);
-                deleteUser(user.id);
-                console.log(user.id)
+        if (newId == selectedId) {
+            row.querySelector("td:nth-child(1").textContent = newId;
+            row.querySelector("td:nth-child(2)").textContent = newEmail;
+            row.querySelector("td:nth-child(3)").textContent = newFirstName + " " + newLastName;
+            row.querySelector("td:nth-child(4) img").src = newAvatar;
+
+            fetch(`https://reqres.in/api/users/${newId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user),
             })
-            .catch(error => {
-                console.error("Hata:", error);
-            });
+                .then(response => { return response.json() })
+                .then(data => {
+                    console.log("Kullanıcı güncellendi:", data);
+                    deleteUser(user.id);
+                    console.log("Eski değerler silindi")
+                })
+                .catch(error => {
+                    console.error("Hata:", error);
+                });
+        }
 
     }
 
@@ -179,18 +180,19 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(`https://reqres.in/api/users/${userId}`, {
             method: "DELETE"
         })
-            .then(() => { console.log("silindi", userId) })
+            .then(() => { console.log(`${userId} Silindi`) })
     }
 
     fetch("https://reqres.in/api/users?page=2")
         .then(response => response.json())
         .then(veri => {
-            console.log(veri)
+            console.log("Data:", veri)
             veri.data.forEach(user => {
                 console.log(user)
                 const row = createRow(user);
                 userTableBody.appendChild(row);
             });
+            console.log("--------------------------------------------");
         })
         .catch(error => console.error("Error", error));
 
